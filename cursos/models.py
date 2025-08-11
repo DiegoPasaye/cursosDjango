@@ -1,5 +1,6 @@
 from django.db import models
 from django.utils import timezone
+from ckeditor.fields import RichTextField
 
 class Curso(models.Model):
     nombre = models.CharField(
@@ -67,3 +68,21 @@ class Curso(models.Model):
     def __str__(self):
         return self.nombre
 
+class Actividad(models.Model):
+    id_actividad = models.AutoField(primary_key=True, verbose_name="Clave de Actividad")
+    curso = models.ForeignKey(Curso, on_delete=models.CASCADE, verbose_name="Curso Relacionado")
+    nombre_actividad = models.CharField(max_length=150, verbose_name="Nombre de la Actividad")
+    descripcion_Actividad = RichTextField(verbose_name="Comentario")
+    fecha_creacion = models.DateTimeField(
+        auto_now_add=True,
+        verbose_name='Fecha de Creación',
+        help_text="Fecha y hora en que se registró el curso. Se genera automáticamente."
+    )
+
+    class Meta:
+        verbose_name = 'Actividad'
+        verbose_name_plural = 'Actividades'
+        ordering = ['fecha_creacion']
+
+    def __str__(self):
+        return self.nombre_actividad

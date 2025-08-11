@@ -39,7 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'contenido',
-    'cursos'
+    'cursos',
+    'ckeditor'
 ]
 
 MIDDLEWARE = [
@@ -127,3 +128,15 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+CKEDITOR_CONFIGS = {
+    'default':{
+        'toolbar': 'Custom',
+        'toolbar_Custom': [
+            ['Format', 'Bold', 'Italic', 'Underline', 'Strike'],
+            ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent'],
+            ['Table', 'HorizontalRule', 'Smiley', 'SpecialChar'],
+            ['Maximize', 'ShowBlocks'],
+        ]
+    }
+}
